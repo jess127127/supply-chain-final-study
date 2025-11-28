@@ -521,9 +521,22 @@ function resetQuiz() {
     
     // Update study materials
     const materialKey = chapter === 'all' ? 'all' : parseInt(chapter);
-    document.getElementById('studyMaterials').innerHTML = chapterMaterials[materialKey] || chapterMaterials.all;
+    const materialsDiv = document.getElementById('studyMaterials');
+    if (materialsDiv) {
+        materialsDiv.innerHTML = chapterMaterials[materialKey] || chapterMaterials.all;
+    }
     
     showQuestion();
+}
+
+// Update study materials when chapter changes
+function updateStudyMaterials() {
+    const chapter = document.getElementById('quizChapter').value;
+    const materialKey = chapter === 'all' ? 'all' : parseInt(chapter);
+    const materialsDiv = document.getElementById('studyMaterials');
+    if (materialsDiv) {
+        materialsDiv.innerHTML = chapterMaterials[materialKey] || chapterMaterials.all;
+    }
 }
 
 function showQuestion() {
@@ -655,7 +668,7 @@ function backToMenu() {
         
         <div class="chapter-select">
             <label>Select Chapter:</label>
-            <select id="quizChapter" onchange="resetQuiz()">
+            <select id="quizChapter" onchange="updateStudyMaterials(); resetQuiz()">
                 <option value="all">All Chapters (Mixed)</option>
                 <option value="7">Chapter 7 - Supplier Relationship Management</option>
                 <option value="8">Chapter 8 - Operations Management</option>
@@ -710,6 +723,7 @@ window.backToMenu = backToMenu;
 window.resetHangman = resetHangman;
 window.guessLetter = guessLetter;
 window.resetQuiz = resetQuiz;
+window.updateStudyMaterials = updateStudyMaterials;
 window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 window.finishQuiz = finishQuiz;
