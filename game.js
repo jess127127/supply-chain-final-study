@@ -632,5 +632,15 @@ function backToMenu() {
 
 // Initialize on page load
 window.addEventListener('load', function() {
-    // Page is ready
+    console.log('Game script loaded');
 });
+
+// Make functions globally available
+window.startGame = startGame;
+window.backToMenu = backToMenu;
+window.resetHangman = resetHangman;
+window.guessLetter = guessLetter;
+window.resetQuiz = resetQuiz;
+window.selectAnswer = selectAnswer;
+window.nextQuestion = nextQuestion;
+window.finishQuiz = finishQuiz;
