@@ -439,30 +439,20 @@
             </div>
         </div>
 
-        <!-- Study Slides Section -->
+        <!-- Study Slides Section - All Content -->
         <div id="slidesSection" class="game-section">
             <button class="btn-secondary back-btn" onclick="backToMenu()">← Back to Menu</button>
             
-            <div class="chapter-select">
-                <label>Select Chapter:</label>
-                <select id="slidesChapter" onchange="showChapterSlides()">
-                    <option value="7">Chapter 7 - Supplier Relationship Management</option>
-                    <option value="8">Chapter 8 - Operations Management</option>
-                    <option value="9">Chapter 9 - Logistics & Warehousing</option>
-                </select>
-            </div>
-
-            <div id="slidesContainer" style="background: #f9f9f9; padding: 30px; border-radius: 10px; min-height: 400px; margin-top: 20px;">
-                <h2 id="slideTitle" style="color: #667eea; margin-bottom: 20px;"></h2>
-                <div id="slideContent" style="font-size: 1.05em; line-height: 1.8; color: #333;">
-                    <!-- Content loaded dynamically -->
-                </div>
-            </div>
-
-            <div style="margin-top: 20px; padding: 15px; background: #e8f1f8; border-radius: 10px; border-left: 4px solid #667eea;">
+            <div style="margin-top: 20px; padding: 15px; background: #e8f1f8; border-radius: 10px; border-left: 4px solid #667eea; margin-bottom: 20px;">
                 <p style="color: #667eea; font-weight: bold; margin-bottom: 10px;">🔊 Text-to-Speech Helper</p>
                 <p style="color: #333; margin-bottom: 10px;">Click any text below to hear it read aloud by AI voice:</p>
                 <button id="speakBtn" class="btn-primary" onclick="toggleTextToSpeech()" style="width: 100%;">Enable Text-to-Speech</button>
+            </div>
+
+            <div id="allSlidesContainer" style="background: #f9f9f9; padding: 30px; border-radius: 10px;">
+                <div id="allSlideContent" style="font-size: 1.05em; line-height: 1.8; color: #333;">
+                    <!-- All content loaded dynamically -->
+                </div>
             </div>
         </div>
     </div>

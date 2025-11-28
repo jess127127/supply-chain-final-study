@@ -837,7 +837,7 @@ function startGame(game) {
         resetQuiz();
     } else if (game === 'slides') {
         document.getElementById('slidesSection').classList.add('active');
-        showChapterSlides();
+        showAllSlides();
     }
 }
 
@@ -1110,6 +1110,22 @@ const slidesContent = {
     }
 };
 
+function toggleTextToSpeech() {
+    textToSpeechEnabled = !textToSpeechEnabled;
+    const btn = document.getElementById('speakBtn');
+    if (textToSpeechEnabled) {
+        btn.textContent = '🔊 Text-to-Speech: ON (Click text to hear)';
+        btn.style.background = '#667eea';
+        btn.style.color = 'white';
+        makeTextClickable();
+    } else {
+        btn.textContent = '🔇 Enable Text-to-Speech';
+        btn.style.background = '';
+        btn.style.color = '';
+        removeTextClickable();
+    }
+}
+
 // Text-to-Speech functionality
 let textToSpeechEnabled = false;
 
@@ -1130,7 +1146,7 @@ function toggleTextToSpeech() {
 }
 
 function makeTextClickable() {
-    const slideContent = document.getElementById('slideContent');
+    const slideContent = document.getElementById('allSlideContent');
     if (!slideContent) return;
     
     // Make all text elements clickable
@@ -1154,7 +1170,7 @@ function makeTextClickable() {
 }
 
 function removeTextClickable() {
-    const slideContent = document.getElementById('slideContent');
+    const slideContent = document.getElementById('allSlideContent');
     if (!slideContent) return;
     
     const elements = slideContent.querySelectorAll('p, li, h3, h2, h1');
@@ -1185,24 +1201,32 @@ function speakText(text) {
     speechSynthesis.speak(utterance);
 }
 
-function showChapterSlides() {
-    const chapter = document.getElementById('slidesChapter').value;
-    const slides = slidesContent[chapter];
+function showAllSlides() {
+    const allSlideContent = document.getElementById('allSlideContent');
     
-    if (slides) {
-        document.getElementById('slideTitle').textContent = slides.title;
-        document.getElementById('slideContent').innerHTML = slides.content;
+    if (allSlideContent) {
+        // Combine all chapters into one HTML
+        let allContent = '';
+        
+        // Chapter 7
+        allContent += `<h2 style="color: #667eea; margin-top: 30px; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">Chapter 7: Supplier Relationship Management</h2>`;
+        allContent += slidesContent["7"].content;
+        
+        // Chapter 8
+        allContent += `<h2 style="color: #667eea; margin-top: 40px; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">Chapter 8: Operations Management</h2>`;
+        allContent += slidesContent["8"].content;
+        
+        // Chapter 9
+        allContent += `<h2 style="color: #667eea; margin-top: 40px; margin-bottom: 20px; border-bottom: 3px solid #667eea; padding-bottom: 10px;">Chapter 9: Logistics & Warehousing</h2>`;
+        allContent += slidesContent["9"].content;
+        
+        allSlideContent.innerHTML = allContent;
         
         // Re-apply text-to-speech if enabled
         if (textToSpeechEnabled) {
             makeTextClickable();
         }
     }
-}
-
-// Show first chapter slides on load
-function initSlides() {
-    showChapterSlides();
 }
 
 
@@ -1222,7 +1246,6 @@ window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 window.finishQuiz = finishQuiz;
 window.toggleHint = toggleHint;
-window.showChapterSlides = showChapterSlides;
 window.toggleTextToSpeech = toggleTextToSpeech;
 window.speakText = speakText;
-window.initSlides = initSlides;
+window.showAllSlides = showAllSlides;
