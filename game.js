@@ -201,6 +201,122 @@ const quizQuestions = [
         ],
         correct: 2,
         explanation: "Continuous flow manufacturing maintains a steady stream of production with minimal interruption, typical of high-volume, standardized products."
+    },
+    
+    // Chapter 7 - Supplier Relationship Management Questions
+    {
+        chapter: 7,
+        question: "Strategic partnerships require are tactical in nature.",
+        hint: "<strong>Strategic vs Tactical Partnerships:</strong><br><strong>Strategic Partnerships:</strong> Long-term, high-level alliances focused on major business objectives, competitive advantage, and mutual growth. NOT just tactical/operational details.<br><strong>Tactical:</strong> Short-term, operational activities. Strategic partnerships are STRATEGIC (not tactical) - they're about long-term vision and goals.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. Strategic partnerships are strategic in nature (long-term, focused on business objectives), not tactical. Tactical refers to short-term, operational activities."
+    },
+    {
+        chapter: 7,
+        question: "Supplier Management Relationships focuses on the front part of the supply chain.",
+        hint: "<strong>Supplier Relationship Management (SRM) - Location in Supply Chain:</strong><br>SRM focuses on the <strong>FRONT/UPSTREAM</strong> part of the supply chain - managing and building relationships with <strong>suppliers</strong> and vendors who provide materials and components. It's about the sourcing and procurement side, not downstream distribution.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Supplier Relationship Management focuses on the front (upstream) part of the supply chain - managing suppliers and procurement."
+    },
+    {
+        chapter: 7,
+        question: "Which is not one of the keys to building a strategic relationship?",
+        hint: "<strong>Keys to Building Strategic Relationships:</strong><br>✓ <strong>Lower Prices</strong> - Cost management is important<br>✓ <strong>Managing Change</strong> - Handling transitions and improvements<br>✓ <strong>Having a Shared Vision and Objectives</strong> - Alignment on goals<br>✓ <strong>Continuous Improvement</strong> - Ongoing enhancement<br>The question asks which is NOT a key - they're all important keys to strategic relationships, so examine the wording carefully.",
+        options: [
+            "Lower Prices",
+            "Managing Change",
+            "Continuous Improvement",
+            "Having a Shared Vision and Objectives"
+        ],
+        correct: 0,
+        explanation: "Lower Prices. While cost matters, the primary keys to strategic relationships are mutual vision/objectives, managing change, continuous improvement, and trust - not just lower prices alone."
+    },
+    {
+        chapter: 7,
+        question: "With trust, partners are less likely to work together or find compromise solutions to problems.",
+        hint: "<strong>Trust in Supplier Relationships - CRITICAL:</strong><br><strong>WITH TRUST:</strong> Partners ARE MORE LIKELY to work together, communicate openly, find compromise solutions, and take risks.<br><strong>WITHOUT TRUST:</strong> Partners are LESS LIKELY to collaborate.<br>The statement is BACKWARDS - with trust, partners work better together, not worse.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. With trust, partners are MORE likely to work together and find compromise solutions. Trust enables collaboration, not hinders it."
+    },
+    {
+        chapter: 7,
+        question: "Making a series of small improvements over time results in the elimination of waste in a system. This is considered what?",
+        hint: "<strong>Improvement Concepts:</strong><br><strong>Continuous Improvement:</strong> Making small, ongoing improvements over time. Also called 'Kaizen' in Japanese. Results in gradual but substantial elimination of waste.<br><strong>Lean:</strong> Overall manufacturing/operational philosophy focused on efficiency and waste elimination<br><strong>Bullwhip Effect:</strong> Demand distortion in supply chain<br><strong>Partnership:</strong> Supplier relationship type",
+        options: [
+            "Lean",
+            "Continuous Improvement",
+            "Bullwhip Effect",
+            "Partnership"
+        ],
+        correct: 1,
+        explanation: "Continuous Improvement. The practice of making a series of small improvements over time is called Continuous Improvement (also known as Kaizen)."
+    },
+    {
+        chapter: 7,
+        question: "Total Cost of Ownership is made up of all costs associated with the acquisition, use, and maintenance of a good or service.",
+        hint: "<strong>Total Cost of Ownership (TCO) - DEFINITION:</strong><br>TCO includes ALL costs from beginning to end:<br>• <strong>Acquisition:</strong> Purchase price, setup, implementation<br>• <strong>Use:</strong> Training, support, operation<br>• <strong>Maintenance:</strong> Repairs, updates, sustaining<br>Not just purchase price - it's the TOTAL lifecycle cost.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Total Cost of Ownership (TCO) includes all costs from acquisition through use and maintenance of a good or service."
+    },
+    {
+        chapter: 7,
+        question: "It is important to actively monitor a supplier's performance and provide visibility and feedback.",
+        hint: "<strong>Supplier Performance Management:</strong><br>YES - Active monitoring is CRITICAL for supplier relationships:<br>• Track quality, delivery, cost metrics<br>• Provide regular feedback (both positive and constructive)<br>• Visibility into supplier operations helps identify issues early<br>• Feedback enables improvements and prevents problems<br>This is a core practice in SRM.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Active monitoring of supplier performance and providing feedback is essential for effective supplier relationship management."
+    },
+    {
+        chapter: 7,
+        question: "ISO 9000 is a series of environmental standards in design, development, production, installation, and service.",
+        hint: "<strong>ISO Standards - KEY DISTINCTION:</strong><br><strong>ISO 9000:</strong> Quality Management Systems standards - focused on QUALITY, not environment<br><strong>ISO 14000:</strong> Environmental Management Systems standards<br>The definition describes ISO 14000, not ISO 9000. ISO 9000 is about QUALITY management.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. ISO 9000 is a series of quality management standards, not environmental standards. ISO 14000 is the series for environmental standards."
+    },
+    {
+        chapter: 7,
+        question: "Supplier Development is the technical and financial assistance given to existing and potential suppliers to improve quality and/or delivery performance.",
+        hint: "<strong>Supplier Development - DEFINITION:</strong><br>Supplier Development means providing:<br>• <strong>Technical Assistance:</strong> Helping suppliers improve processes, use better equipment, adopt best practices<br>• <strong>Financial Assistance:</strong> Investment, loans, or cost-sharing for improvements<br>Goal: Improve supplier's QUALITY and/or DELIVERY performance<br>This creates win-win relationships and strengthens the supply chain.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Supplier Development is the assistance given to suppliers to improve their quality and delivery performance."
+    },
+    {
+        chapter: 7,
+        question: "It is important to recognize that an SRM system can only be implemented in line with the associated business process changes.",
+        hint: "<strong>SRM Implementation - System Alignment:</strong><br>SRM systems MUST be aligned with business processes:<br>• Can't just install SRM software and expect success<br>• Business processes, workflows, and operations must change to support SRM<br>• Requires organizational changes, training, and culture shift<br>• SRM success depends on holistic business process redesign<br>Technology alone without process change = failure",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. SRM system implementation must be aligned with and supported by business process changes for success."
     }
 ];
 
