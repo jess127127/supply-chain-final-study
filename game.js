@@ -272,63 +272,47 @@ const quizQuestions = [
     }
 ];
 
-// Chapter Study Materials
+// Chapter Study Materials - Simplified
 const chapterMaterials = {
-    7: `
-        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 7: Supplier Relationship Management</h4>
-        <p><strong>Key Concepts:</strong></p>
-        <ul style="margin-left: 20px; margin-bottom: 15px;">
-            <li><strong>Supplier Selection:</strong> Choosing the right suppliers based on quality, cost, and reliability</li>
-            <li><strong>Vendor Management:</strong> Ongoing relationship and performance monitoring</li>
-            <li><strong>Procurement:</strong> Process of acquiring goods and services</li>
-            <li><strong>Contracts:</strong> Legal agreements defining terms and expectations</li>
-            <li><strong>Quality Standards:</strong> Certifications and audits to ensure excellence</li>
-            <li><strong>Performance Metrics:</strong> On-time delivery, quality levels, responsiveness</li>
-            <li><strong>Strategic Partnerships:</strong> Long-term collaboration for mutual benefit</li>
-            <li><strong>Risk Management:</strong> Identifying and mitigating supplier-related risks</li>
-        </ul>
-        <p><strong>Important Terms:</strong> Procurement, Vendor, Negotiation, Contract, Certification, Audit, Integration, Transparency</p>
-    `,
-    8: `
-        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 8: Operations Management</h4>
-        <p><strong>Key Concepts:</strong></p>
-        <ul style="margin-left: 20px; margin-bottom: 15px;">
-            <li><strong>Lean Production:</strong> Eliminating waste while maximizing value</li>
-            <li><strong>Just-in-Time (JIT):</strong> Producing exactly what's needed, when needed</li>
-            <li><strong>Capacity Planning:</strong> Determining production capability and limitations</li>
-            <li><strong>Quality Control:</strong> Ensuring products meet specified standards</li>
-            <li><strong>Process Improvement:</strong> Continuous methods to enhance efficiency</li>
-            <li><strong>Inventory Management:</strong> Balancing stock levels with demand</li>
-            <li><strong>Production Scheduling:</strong> Planning work to meet demand efficiently</li>
-            <li><strong>Six Sigma:</strong> Data-driven approach to process improvement</li>
-        </ul>
-        <p><strong>Important Terms:</strong> Lean, Continuous, Efficiency, Capacity, Inventory, Control, Improvement, Process</p>
-    `,
-    9: `
-        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 9: Logistics & Warehousing</h4>
-        <p><strong>Key Concepts:</strong></p>
-        <ul style="margin-left: 20px; margin-bottom: 15px;">
-            <li><strong>Warehouse Management:</strong> Storage, handling, and inventory tracking</li>
-            <li><strong>Distribution Networks:</strong> System of facilities and transportation routes</li>
-            <li><strong>Transportation Modes:</strong> Truck, rail, air, ship - each with pros/cons</li>
-            <li><strong>Order Fulfillment:</strong> Complete process from order to delivery</li>
-            <li><strong>Supply Chain Visibility:</strong> Real-time tracking of shipments</li>
-            <li><strong>Last-Mile Delivery:</strong> Final step getting product to customer</li>
-            <li><strong>Location Strategy:</strong> Optimal placement of distribution centers</li>
-            <li><strong>Cost Optimization:</strong> Reducing logistics expenses without sacrificing service</li>
-        </ul>
-        <p><strong>Important Terms:</strong> Logistics, Warehousing, Distribution, Transportation, Fulfillment, Tracking, Network, Optimization</p>
-    `,
-    all: `
-        <h4 style="color: #667eea; margin-bottom: 10px;">Supply Chain Overview</h4>
-        <p>The supply chain consists of three main areas:</p>
-        <ul style="margin-left: 20px; margin-bottom: 10px;">
-            <li><strong>Chapter 7:</strong> Managing supplier relationships for quality and value</li>
-            <li><strong>Chapter 8:</strong> Operating efficiently to produce goods</li>
-            <li><strong>Chapter 9:</strong> Moving products to customers effectively</li>
-        </ul>
-        <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><em>Tip: Review all chapters to understand how they interconnect!</em></p>
-    `
+    7: `<strong>Chapter 7: Supplier Relationship Management</strong><br><br>
+        <strong>Key Topics:</strong><br>
+        • Supplier Selection & Evaluation<br>
+        • Vendor Management<br>
+        • Procurement Process<br>
+        • Contracts & Negotiations<br>
+        • Quality Standards & Certifications<br>
+        • Performance Metrics<br>
+        • Strategic Partnerships<br>
+        • Risk Management<br><br>
+        <strong>Key Terms:</strong> Procurement, Vendor, Contract, Certification, Audit, Performance`,
+    8: `<strong>Chapter 8: Operations Management</strong><br><br>
+        <strong>Key Topics:</strong><br>
+        • Lean Production & Waste Elimination<br>
+        • Just-in-Time (JIT) Manufacturing<br>
+        • Capacity Planning<br>
+        • Quality Control<br>
+        • Process Improvement<br>
+        • Inventory Management<br>
+        • Production Scheduling<br>
+        • Six Sigma Methodology<br><br>
+        <strong>Key Terms:</strong> Lean, Efficiency, Capacity, Inventory, Control, Improvement`,
+    9: `<strong>Chapter 9: Logistics & Warehousing</strong><br><br>
+        <strong>Key Topics:</strong><br>
+        • Warehouse Management<br>
+        • Distribution Networks<br>
+        • Transportation Modes<br>
+        • Order Fulfillment<br>
+        • Supply Chain Visibility<br>
+        • Last-Mile Delivery<br>
+        • Location Strategy<br>
+        • Cost Optimization<br><br>
+        <strong>Key Terms:</strong> Logistics, Warehousing, Distribution, Transportation, Tracking`,
+    all: `<strong>Supply Chain Overview</strong><br><br>
+        <strong>All Chapters Cover:</strong><br>
+        • Chapter 7: Managing suppliers for quality<br>
+        • Chapter 8: Operating efficiently<br>
+        • Chapter 9: Moving products to customers<br><br>
+        Select a specific chapter to see detailed materials!`
 };
 
 
@@ -531,18 +515,16 @@ function resetQuiz() {
 
 // Update study materials when chapter changes
 function updateStudyMaterials() {
-    console.log('updateStudyMaterials called');
-    const chapter = document.getElementById('quizChapter').value;
-    console.log('Selected chapter:', chapter);
-    const materialKey = chapter === 'all' ? 'all' : parseInt(chapter);
-    console.log('Material key:', materialKey);
-    const materialsDiv = document.getElementById('studyMaterials');
-    console.log('Materials div:', materialsDiv);
-    console.log('chapterMaterials[materialKey]:', chapterMaterials[materialKey]);
-    if (materialsDiv) {
-        const content = chapterMaterials[materialKey] || chapterMaterials.all;
-        console.log('Setting content:', content.substring(0, 100));
-        materialsDiv.innerHTML = content;
+    try {
+        const chapter = document.getElementById('quizChapter').value;
+        const materialsDiv = document.getElementById('studyMaterials');
+        if (materialsDiv && chapterMaterials[chapter]) {
+            materialsDiv.innerHTML = chapterMaterials[chapter];
+        } else if (materialsDiv) {
+            materialsDiv.innerHTML = chapterMaterials.all;
+        }
+    } catch(e) {
+        console.error('Error updating study materials:', e);
     }
 }
 
