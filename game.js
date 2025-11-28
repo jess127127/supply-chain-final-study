@@ -59,216 +59,136 @@ const chapter9Terms = {
 
 // Quiz Questions
 const quizQuestions = [
-    // Chapter 7 Questions
-    {
-        chapter: 7,
-        question: "What is the primary goal of supplier relationship management?",
-        options: [
-            "To reduce supplier costs at all times",
-            "To develop long-term partnerships that create value for both parties",
-            "To eliminate all negotiations",
-            "To have multiple identical suppliers"
-        ],
-        correct: 1,
-        explanation: "Good supplier relationships are built on mutual value creation and long-term partnership."
-    },
-    {
-        chapter: 7,
-        question: "What does supplier certification ensure?",
-        options: [
-            "The supplier is the cheapest option",
-            "The supplier meets specific quality, safety, or operational standards",
-            "The supplier has been in business the longest",
-            "The supplier is located nearby"
-        ],
-        correct: 1,
-        explanation: "Certification is an official approval that a supplier meets agreed-upon standards."
-    },
-    {
-        chapter: 7,
-        question: "Which of these is a key component of supplier evaluation?",
-        options: [
-            "Only price comparison",
-            "Performance metrics like quality, delivery, and responsiveness",
-            "Supplier's company size alone",
-            "Color of supplier's logo"
-        ],
-        correct: 1,
-        explanation: "Performance evaluation includes quality, on-time delivery, and responsiveness."
-    },
-    {
-        chapter: 7,
-        question: "What is procurement?",
-        options: [
-            "Selling products to customers",
-            "The process of acquiring goods and services from external sources",
-            "Manufacturing products",
-            "Delivering finished goods"
-        ],
-        correct: 1,
-        explanation: "Procurement is the acquisition of goods and services needed by an organization."
-    },
-    {
-        chapter: 7,
-        question: "Why is transparency important in supplier relationships?",
-        options: [
-            "It increases costs unnecessarily",
-            "It allows for open communication and problem-solving",
-            "It is not important at all",
-            "It only benefits the supplier"
-        ],
-        correct: 1,
-        explanation: "Transparency builds trust and enables effective collaboration."
-    },
-
-    // Chapter 8 Questions
+    // Chapter 8 - Operations Management Questions
     {
         chapter: 8,
-        question: "What is the main focus of Lean manufacturing?",
+        question: "Operations Management refers to managing the process to convert demand plans into forecast.",
         options: [
-            "Hiring fewer employees",
-            "Eliminating waste and improving efficiency",
-            "Reducing product quality",
-            "Increasing inventory levels"
+            "True",
+            "False"
         ],
         correct: 1,
-        explanation: "Lean manufacturing focuses on eliminating waste and maximizing value."
+        explanation: "False. Operations Management refers to managing the process to convert inputs into outputs (finished goods/services), not just converting demand plans into forecasts."
     },
     {
         chapter: 8,
-        question: "What does operational efficiency measure?",
+        question: "Make-to-Order (MTO) is a manufacturing strategy in which manufacturing starts only after a customer's order is received.",
         options: [
-            "How long employees work",
-            "How well resources are used to produce output",
-            "The color of the facility",
-            "The age of equipment"
+            "True",
+            "False"
         ],
-        correct: 1,
-        explanation: "Efficiency measures how effectively resources are converted into products."
+        correct: 0,
+        explanation: "True. MTO strategy waits for customer orders before production begins, reducing inventory costs but increasing lead time."
     },
     {
         chapter: 8,
-        question: "What is capacity in operations management?",
+        question: "Which manufacturing strategy has the shortest lead time to get product to customer?",
         options: [
-            "The cost of materials",
-            "The number of employees",
-            "The maximum amount of production possible",
-            "The time operations are open"
+            "ETO",
+            "MTS",
+            "ATO",
+            "MTO"
+        ],
+        correct: 1,
+        explanation: "MTS (Make-to-Stock) has the shortest lead time because products are already manufactured and in stock, ready for immediate delivery."
+    },
+    {
+        chapter: 8,
+        question: "Assemble-to-Order (ATO) is a manufacturing strategy in which the product is designed, engineered, and built to the customer's specifications after receipt of the order.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. That describes ETO (Engineer-to-Order). ATO involves assembling pre-made components after order receipt, not designing and engineering from scratch."
+    },
+    {
+        chapter: 8,
+        question: "Job Shop process works and aligns well to a 'Make To Stock' strategy.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. Job Shop aligns with MTO (Make-to-Order) or ETO strategies, not MTS. Job Shops are designed for customized, low-volume production."
+    },
+    {
+        chapter: 8,
+        question: "Manufacturing of a small, fixed quantity of an item in a single production run is related to what process?",
+        options: [
+            "Continuous Flow",
+            "Batching",
+            "Job Shop"
+        ],
+        correct: 1,
+        explanation: "Batching. This describes batch processing - producing a fixed quantity before stopping and switching to a different product."
+    },
+    {
+        chapter: 8,
+        question: "The concept of moving people and materials when and where needed, and as soon as possible is considered value stream mapping.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. This describes Lean manufacturing principles and Just-in-Time (JIT), not value stream mapping. Value stream mapping is a tool used to visualize waste in processes."
+    },
+    {
+        chapter: 8,
+        question: "Crosby developed one of the first tools in the quality management process, the Cause-and-Effect Diagram.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. Crosby is known for Zero Defects and Cost of Quality concepts. The Cause-and-Effect Diagram (Fishbone Diagram) was developed by Ishikawa."
+    },
+    {
+        chapter: 8,
+        question: "The root cause is the core issue that sets in motion the entire cause-and-effect reaction that ultimately leads to the problem.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. The root cause is the underlying reason that, when addressed, eliminates the problem and prevents recurrence."
+    },
+    {
+        chapter: 8,
+        question: "Who is quality defined by in operations?",
+        options: [
+            "Supplier",
+            "Customer",
+            "Manufacturer"
+        ],
+        correct: 1,
+        explanation: "Customer. Quality is defined by the customer's perspective and requirements, not by the supplier or manufacturer alone."
+    },
+    
+    // Additional Chapter 8 questions to supplement
+    {
+        chapter: 8,
+        question: "Lean manufacturing focuses primarily on eliminating what from production?",
+        options: [
+            "Employees",
+            "Waste",
+            "Automation",
+            "Quality checks"
+        ],
+        correct: 1,
+        explanation: "Waste. Lean manufacturing's core principle is to identify and eliminate all forms of waste (muda) in the production process."
+    },
+    {
+        chapter: 8,
+        question: "Which of the following is a characteristic of continuous flow manufacturing?",
+        options: [
+            "Products are made in batches",
+            "Production is customized per order",
+            "Products flow continuously through production",
+            "Each job is unique and requires setup time"
         ],
         correct: 2,
-        explanation: "Capacity is the maximum amount a facility can produce in a given period."
-    },
-    {
-        chapter: 8,
-        question: "What is continuous improvement?",
-        options: [
-            "Keeping everything the same",
-            "Only making changes once per year",
-            "Ongoing process of making operations better",
-            "Firing employees regularly"
-        ],
-        correct: 2,
-        explanation: "Continuous improvement is an ongoing effort to enhance operations."
-    },
-    {
-        chapter: 8,
-        question: "Why is inventory control important?",
-        options: [
-            "To maximize storage space usage",
-            "To maintain sufficient stock while minimizing excess inventory and costs",
-            "To buy as much as possible",
-            "To never run out of any item"
-        ],
-        correct: 1,
-        explanation: "Good inventory control balances availability with cost efficiency."
-    },
-
-    // Chapter 9 Questions
-    {
-        chapter: 9,
-        question: "What is the difference between logistics and warehousing?",
-        options: [
-            "They are the same thing",
-            "Logistics involves movement; warehousing is storage",
-            "Warehousing involves movement; logistics is storage",
-            "Logistics is only for small companies"
-        ],
-        correct: 1,
-        explanation: "Logistics covers movement of goods; warehousing specifically handles storage."
-    },
-    {
-        chapter: 9,
-        question: "What does distribution refer to in supply chain?",
-        options: [
-            "Making products more attractive",
-            "Delivering products from suppliers to customers",
-            "Designing packaging",
-            "Advertising products"
-        ],
-        correct: 1,
-        explanation: "Distribution is the process of getting products to customers."
-    },
-    {
-        chapter: 9,
-        question: "Which of these is a key metric in logistics performance?",
-        options: [
-            "Employee happiness alone",
-            "On-time delivery and cost efficiency",
-            "Building color",
-            "Office furniture quality"
-        ],
-        correct: 1,
-        explanation: "Key logistics metrics include delivery time, accuracy, and cost."
-    },
-    {
-        chapter: 9,
-        question: "What is order fulfillment?",
-        options: [
-            "Creating new products",
-            "Selling products to wholesalers",
-            "Receiving and delivering customer orders",
-            "Manufacturing goods"
-        ],
-        correct: 2,
-        explanation: "Fulfillment is the complete process of picking, packing, and delivering orders."
-    },
-    {
-        chapter: 9,
-        question: "Why is tracking important in logistics?",
-        options: [
-            "It increases shipping costs",
-            "It allows customers and companies to know where shipments are",
-            "It slows down delivery",
-            "It is not important"
-        ],
-        correct: 1,
-        explanation: "Tracking provides visibility and enables proactive problem-solving."
-    },
-
-    // Mixed Chapter Questions
-    {
-        chapter: "mixed",
-        question: "Which concept applies across Supplier Management, Operations, and Logistics?",
-        options: [
-            "Only cost reduction",
-            "Continuous improvement and efficiency",
-            "Increasing product prices",
-            "Hiring more staff"
-        ],
-        correct: 1,
-        explanation: "Continuous improvement and efficiency are key in all supply chain areas."
-    },
-    {
-        chapter: "mixed",
-        question: "What is the ultimate goal of supply chain management?",
-        options: [
-            "To maximize supplier costs",
-            "To deliver customer value efficiently",
-            "To create the most complex process",
-            "To employ as many people as possible"
-        ],
-        correct: 1,
-        explanation: "Supply chain success means delivering value to customers efficiently."
+        explanation: "Continuous flow manufacturing maintains a steady stream of production with minimal interruption, typical of high-volume, standardized products."
     }
 ];
 
