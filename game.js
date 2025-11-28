@@ -317,6 +317,124 @@ const quizQuestions = [
         ],
         correct: 0,
         explanation: "True. SRM system implementation must be aligned with and supported by business process changes for success."
+    },
+    
+    // Chapter 9 - Logistics & Warehousing Questions
+    {
+        chapter: 9,
+        question: "Logistics refers to the management of the movement and storage of goods and information throughout the supply chain.",
+        hint: "<strong>Logistics Definition:</strong><br>Logistics is the comprehensive management of:<br>• <strong>Movement:</strong> Transportation of goods from point A to point B<br>• <strong>Storage:</strong> Warehousing and inventory management<br>• <strong>Information:</strong> Tracking, visibility, and communication<br>Logistics spans from suppliers through manufacturing to final delivery - it's about getting the right product to the right place at the right time in the most efficient way.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Logistics encompasses the movement, storage, and information management of goods throughout the supply chain."
+    },
+    {
+        chapter: 9,
+        question: "Which of the following is NOT a primary transportation mode in logistics?",
+        hint: "<strong>Primary Transportation Modes:</strong><br>• <strong>Air:</strong> Fastest, most expensive, used for time-sensitive goods<br>• <strong>Road/Truck:</strong> Flexible, used for last-mile delivery and local distribution<br>• <strong>Rail:</strong> Cost-effective for large volumes over long distances<br>• <strong>Water/Maritime:</strong> Least expensive for bulk, international shipping<br>• <strong>Pipeline:</strong> Used for liquids and gases (oil, gas, chemicals)<br>All major modes are essential to logistics - this tests understanding of which ones actually exist and are used.",
+        options: [
+            "Rail",
+            "Pipeline",
+            "Helicopter",
+            "Water"
+        ],
+        correct: 2,
+        explanation: "Helicopter. While helicopters exist, they are not a primary transportation mode in logistics. The main modes are air, road, rail, water, and pipeline."
+    },
+    {
+        chapter: 9,
+        question: "Warehousing serves only to store inventory until products are needed for production or customer delivery.",
+        hint: "<strong>Warehousing Functions - NOT JUST STORAGE:</strong><br>Warehousing includes multiple value-added activities:<br>• <strong>Storage:</strong> Keeping inventory safe<br>• <strong>Consolidation:</strong> Combining smaller shipments<br>• <strong>Cross-docking:</strong> Transferring goods with minimal storage<br>• <strong>Order fulfillment:</strong> Picking, packing, and labeling<br>• <strong>Customization:</strong> Final assembly, packaging, labeling<br>• <strong>Returns processing:</strong> Handling returns and damage<br>Warehousing is strategic, not just storage!",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. Warehousing involves multiple functions beyond storage including consolidation, cross-docking, order fulfillment, customization, and returns processing."
+    },
+    {
+        chapter: 9,
+        question: "A distribution network strategy that minimizes transportation cost but increases inventory carrying costs is typically focused on what?",
+        hint: "<strong>Distribution Network Trade-offs:</strong><br><strong>More Distribution Centers:</strong> More locations = lower transportation costs (shorter distances) BUT higher inventory costs (more locations to stock)<br><strong>Fewer Distribution Centers:</strong> Fewer locations = higher transportation costs (longer distances) BUT lower inventory costs (centralized)<br>The question describes MORE distribution centers = minimized transportation costs but increased inventory costs. This is a <strong>customer service/responsiveness</strong> focused strategy.",
+        options: [
+            "Cost minimization",
+            "Customer service and responsiveness",
+            "Inventory reduction",
+            "Supplier consolidation"
+        ],
+        correct: 1,
+        explanation: "Customer service and responsiveness. More distribution centers reduce delivery time and transportation cost but increase inventory costs - prioritizing customer service."
+    },
+    {
+        chapter: 9,
+        question: "Last-Mile delivery refers to the final step in the logistics network where products are delivered from the warehouse to the customer.",
+        hint: "<strong>Last-Mile Delivery - CRITICAL CONCEPT:</strong><br>Last-mile is the FINAL LEG of the supply chain:<br>• From distribution center/warehouse → directly to customer's doorstep<br>• Most expensive part of logistics (per unit cost)<br>• Critical for customer satisfaction and experience<br>• Includes delivery confirmation, returns handling<br>• Growing challenge due to e-commerce expectations for speed and flexibility<br>Often the most challenging and costly portion of the entire supply chain.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Last-Mile delivery is the final step from warehouse to customer, and it's typically the most expensive and critical part of the logistics network."
+    },
+    {
+        chapter: 9,
+        question: "Supply chain visibility refers to the ability to see and track products and shipments in real-time throughout the logistics network.",
+        hint: "<strong>Supply Chain Visibility - STRATEGIC ADVANTAGE:</strong><br>Visibility enables:<br>• <strong>Tracking:</strong> Real-time location of shipments<br>• <strong>Risk Management:</strong> Early warning of delays or issues<br>• <strong>Decision-making:</strong> Informed choices about routing and resources<br>• <strong>Customer Service:</strong> Providing customers with accurate information<br>• <strong>Proactive Problem-solving:</strong> Addressing issues before they impact delivery<br>Modern supply chains use GPS, RFID, IoT, and data analytics for visibility.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Supply chain visibility is the ability to track and monitor products and shipments in real-time, which is essential for modern logistics."
+    },
+    {
+        chapter: 9,
+        question: "Which warehousing location strategy focuses on placing distribution centers near major customer concentrations?",
+        hint: "<strong>Warehouse Location Strategies:</strong><br>• <strong>Geographic/Customer-focused:</strong> Place near customers = shorter delivery times, responsive to local needs<br>• <strong>Production-focused:</strong> Place near manufacturing = reduced inbound transportation<br>• <strong>Supply-focused:</strong> Place near suppliers = easier replenishment<br>• <strong>Hub-and-spoke:</strong> Central hub with satellite locations<br>Placing near customer concentrations = customer-centric strategy focused on service and responsiveness.",
+        options: [
+            "Production-focused strategy",
+            "Supply-focused strategy",
+            "Customer-focused/Geographic strategy",
+            "Hub consolidation strategy"
+        ],
+        correct: 2,
+        explanation: "Customer-focused/Geographic strategy. Locating distribution centers near major customer concentrations enables faster delivery and better customer service."
+    },
+    {
+        chapter: 9,
+        question: "The bullwhip effect in supply chain logistics results in less variability in demand as you move upstream in the supply chain.",
+        hint: "<strong>Bullwhip Effect - DEMAND DISTORTION:</strong><br><strong>What happens:</strong> Small changes in customer demand at retail level create increasingly LARGER demand fluctuations as you move upstream (to distributors, manufacturers, suppliers)<br><strong>Why it's bad:</strong> Causes excessive inventory, inefficient production, wasted resources<br><strong>Example:</strong> 5% customer demand increase → 10% distributor order → 20% manufacturer order → 30% supplier order<br>Effect is like a whip - small movement at handle = large movement at tip. The statement is BACKWARDS - demand variability INCREASES upstream.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. The bullwhip effect causes demand variability to INCREASE as you move upstream in the supply chain, not decrease. Small retail demand changes create larger order fluctuations upstream."
+    },
+    {
+        chapter: 9,
+        question: "Cross-docking is a logistics strategy where goods are received, sorted, and transferred to outbound vehicles with minimal storage time.",
+        hint: "<strong>Cross-Docking - EFFICIENT WAREHOUSING:</strong><br>Cross-docking is a <strong>high-speed transfer</strong> strategy:<br>• Goods arrive at dock, are sorted/consolidated<br>• Transferred directly to outbound trucks in hours (not days/weeks)<br>• Minimal or no storage time in warehouse<br>• Reduces inventory carrying costs significantly<br>• Requires coordinated transportation and excellent visibility<br>• Used by companies like Walmart and Amazon for speed and efficiency<br>It's like a transfer hub - goods pass through, not rest.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 0,
+        explanation: "True. Cross-docking is a logistics strategy that minimizes storage time by transferring goods directly from inbound to outbound transportation."
+    },
+    {
+        chapter: 9,
+        question: "Optimization in logistics primarily focuses on minimizing transportation costs, even if it means slower delivery times to customers.",
+        hint: "<strong>Logistics Optimization - HOLISTIC APPROACH:</strong><br>Optimization balances MULTIPLE objectives, not just cost:<br>• <strong>Cost:</strong> Transportation, warehousing, labor<br>• <strong>Service:</strong> Delivery speed, reliability, accuracy<br>• <strong>Sustainability:</strong> Environmental impact, emissions<br>• <strong>Risk:</strong> Reliability, contingency planning<br>Modern optimization uses analytics to find the BEST BALANCE between cost and service. You can't sacrifice customer service just for lower costs - that creates competitive disadvantage. The statement is too narrow.",
+        options: [
+            "True",
+            "False"
+        ],
+        correct: 1,
+        explanation: "False. Logistics optimization balances multiple factors including cost, service level, sustainability, and risk - not just minimizing transportation costs."
     }
 ];
 
