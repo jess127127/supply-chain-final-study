@@ -835,12 +835,16 @@ function startGame(game) {
             materialsDiv.innerHTML = chapterMaterials["all"];
         }
         resetQuiz();
+    } else if (game === 'slides') {
+        document.getElementById('slidesSection').classList.add('active');
+        showChapterSlides();
     }
 }
 
 function backToMenu() {
     document.getElementById('hangmanSection').classList.remove('active');
     document.getElementById('quizSection').classList.remove('active');
+    document.getElementById('slidesSection').classList.remove('active');
     document.getElementById('mainMenu').classList.add('active');
     
     // Reset quiz section
@@ -898,6 +902,17 @@ function toggleHint() {
     const hintPanel = document.getElementById('hintPanel');
     const hintBtn = document.getElementById('hintBtn');
     
+    if(hintPanel && hintBtn) {
+        if(hintPanel.style.display === 'none' || !hintPanel.style.display) {
+            hintPanel.style.display = 'block';
+            hintBtn.textContent = '✕ Hide Hint & Study Materials';
+        } else {
+            hintPanel.style.display = 'none';
+            hintBtn.textContent = '❓ Show Hint & Study Materials';
+        }
+    }
+}
+
 // Study Slides Content
 const slidesContent = {
     "7": {
