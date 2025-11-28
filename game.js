@@ -518,10 +518,9 @@ function updateStudyMaterials() {
     try {
         const chapter = document.getElementById('quizChapter').value;
         const materialsDiv = document.getElementById('studyMaterials');
-        if (materialsDiv && chapterMaterials[chapter]) {
-            materialsDiv.innerHTML = chapterMaterials[chapter];
-        } else if (materialsDiv) {
-            materialsDiv.innerHTML = chapterMaterials.all;
+        if (materialsDiv) {
+            // Use the chapter value directly (it's already a string from the dropdown)
+            materialsDiv.innerHTML = chapterMaterials[chapter] || chapterMaterials["all"];
         }
     } catch(e) {
         console.error('Error updating study materials:', e);
@@ -562,10 +561,14 @@ function showQuestion() {
     
     // Update study materials based on question's chapter
     const materialsDiv = document.getElementById('studyMaterials');
-    if (materialsDiv && question.chapter !== 'mixed') {
-        materialsDiv.innerHTML = chapterMaterials[String(question.chapter)] || chapterMaterials["all"];
-    } else if (materialsDiv) {
-        materialsDiv.innerHTML = chapterMaterials["all"];
+    if (materialsDiv) {
+        if (question.chapter !== 'mixed') {
+            // For specific chapter questions, show that chapter's materials
+            materialsDiv.innerHTML = chapterMaterials[String(question.chapter)];
+        } else {
+            // For mixed questions, show all chapters overview
+            materialsDiv.innerHTML = chapterMaterials["all"];
+        }
     }
     
     updateQuizScore();
