@@ -531,11 +531,18 @@ function resetQuiz() {
 
 // Update study materials when chapter changes
 function updateStudyMaterials() {
+    console.log('updateStudyMaterials called');
     const chapter = document.getElementById('quizChapter').value;
+    console.log('Selected chapter:', chapter);
     const materialKey = chapter === 'all' ? 'all' : parseInt(chapter);
+    console.log('Material key:', materialKey);
     const materialsDiv = document.getElementById('studyMaterials');
+    console.log('Materials div:', materialsDiv);
+    console.log('chapterMaterials[materialKey]:', chapterMaterials[materialKey]);
     if (materialsDiv) {
-        materialsDiv.innerHTML = chapterMaterials[materialKey] || chapterMaterials.all;
+        const content = chapterMaterials[materialKey] || chapterMaterials.all;
+        console.log('Setting content:', content.substring(0, 100));
+        materialsDiv.innerHTML = content;
     }
 }
 
@@ -653,6 +660,11 @@ function startGame(game) {
         resetHangman();
     } else if (game === 'quiz') {
         document.getElementById('quizSection').classList.add('active');
+        // Initialize with default chapter
+        const materialsDiv = document.getElementById('studyMaterials');
+        if (materialsDiv) {
+            materialsDiv.innerHTML = chapterMaterials.all;
+        }
         resetQuiz();
     }
 }
