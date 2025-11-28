@@ -439,9 +439,13 @@
 
     <script src="game.js"></script>
     <script>
-        // Initialize game on page load
+        // Ensure functions are available after DOM loads
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('Game loaded successfully');
+            console.log('DOM fully loaded');
+            // Make sure updateStudyMaterials is callable
+            if (typeof updateStudyMaterials !== 'undefined') {
+                console.log('updateStudyMaterials is available');
+            }
         });
     </script>
 </body>

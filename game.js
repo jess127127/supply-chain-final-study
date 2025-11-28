@@ -274,7 +274,7 @@ const quizQuestions = [
 
 // Chapter Study Materials - Simplified
 const chapterMaterials = {
-    7: `<strong>Chapter 7: Supplier Relationship Management</strong><br><br>
+    "7": `<strong>Chapter 7: Supplier Relationship Management</strong><br><br>
         <strong>Key Topics:</strong><br>
         • Supplier Selection & Evaluation<br>
         • Vendor Management<br>
@@ -285,7 +285,7 @@ const chapterMaterials = {
         • Strategic Partnerships<br>
         • Risk Management<br><br>
         <strong>Key Terms:</strong> Procurement, Vendor, Contract, Certification, Audit, Performance`,
-    8: `<strong>Chapter 8: Operations Management</strong><br><br>
+    "8": `<strong>Chapter 8: Operations Management</strong><br><br>
         <strong>Key Topics:</strong><br>
         • Lean Production & Waste Elimination<br>
         • Just-in-Time (JIT) Manufacturing<br>
@@ -296,7 +296,7 @@ const chapterMaterials = {
         • Production Scheduling<br>
         • Six Sigma Methodology<br><br>
         <strong>Key Terms:</strong> Lean, Efficiency, Capacity, Inventory, Control, Improvement`,
-    9: `<strong>Chapter 9: Logistics & Warehousing</strong><br><br>
+    "9": `<strong>Chapter 9: Logistics & Warehousing</strong><br><br>
         <strong>Key Topics:</strong><br>
         • Warehouse Management<br>
         • Distribution Networks<br>
@@ -307,7 +307,7 @@ const chapterMaterials = {
         • Location Strategy<br>
         • Cost Optimization<br><br>
         <strong>Key Terms:</strong> Logistics, Warehousing, Distribution, Transportation, Tracking`,
-    all: `<strong>Supply Chain Overview</strong><br><br>
+    "all": `<strong>Supply Chain Overview</strong><br><br>
         <strong>All Chapters Cover:</strong><br>
         • Chapter 7: Managing suppliers for quality<br>
         • Chapter 8: Operating efficiently<br>
@@ -645,7 +645,7 @@ function startGame(game) {
         // Initialize with default chapter
         const materialsDiv = document.getElementById('studyMaterials');
         if (materialsDiv) {
-            materialsDiv.innerHTML = chapterMaterials.all;
+            materialsDiv.innerHTML = chapterMaterials["all"];
         }
         resetQuiz();
     }
