@@ -57,12 +57,13 @@ const chapter9Terms = {
     "OPTIMIZATION": "Making the logistics system work most efficiently"
 };
 
-// Quiz Questions
+// Quiz Questions with Hint Definitions
 const quizQuestions = [
     // Chapter 8 - Operations Management Questions
     {
         chapter: 8,
         question: "Operations Management refers to managing the process to convert demand plans into forecast.",
+        hint: "<strong>Operations Management Definition:</strong><br>The management of business operations to produce goods and services efficiently. It involves converting inputs (materials, labor, capital) into outputs (finished goods/services) to meet customer demands and organizational goals. NOT just converting demand plans into forecasts.",
         options: [
             "True",
             "False"
@@ -73,6 +74,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Make-to-Order (MTO) is a manufacturing strategy in which manufacturing starts only after a customer's order is received.",
+        hint: "<strong>Make-to-Order (MTO):</strong><br>A manufacturing strategy where production begins ONLY after receiving a customer order. This reduces inventory risk but increases lead time. Products are customized based on customer specifications. Aligns well with Job Shop processes.",
         options: [
             "True",
             "False"
@@ -83,6 +85,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Which manufacturing strategy has the shortest lead time to get product to customer?",
+        hint: "<strong>Manufacturing Strategy Comparison:</strong><br><strong>MTS (Make-to-Stock):</strong> Products made in advance and stored - SHORTEST lead time (product ready to ship immediately)<br><strong>ATO (Assemble-to-Order):</strong> Components ready, assembles after order - Medium lead time<br><strong>MTO (Make-to-Order):</strong> Production starts after order - Longer lead time<br><strong>ETO (Engineer-to-Order):</strong> Design and build from scratch - LONGEST lead time",
         options: [
             "ETO",
             "MTS",
@@ -95,6 +98,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Assemble-to-Order (ATO) is a manufacturing strategy in which the product is designed, engineered, and built to the customer's specifications after receipt of the order.",
+        hint: "<strong>ATO vs ETO - KEY DIFFERENCE:</strong><br><strong>ATO (Assemble-to-Order):</strong> Pre-designed components/modules are assembled AFTER order. No design/engineering from scratch.<br><strong>ETO (Engineer-to-Order):</strong> DESIGNED, ENGINEERED, and built from scratch for customer specs. This definition describes ETO, NOT ATO!",
         options: [
             "True",
             "False"
@@ -105,6 +109,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Job Shop process works and aligns well to a 'Make To Stock' strategy.",
+        hint: "<strong>Job Shop & Manufacturing Strategies:</strong><br><strong>Job Shop:</strong> Low-volume, highly customized production. Each job is unique and requires extensive setup time.<br><strong>Aligns WITH:</strong> MTO (Make-to-Order) or ETO (Engineer-to-Order)<br><strong>Does NOT align with:</strong> MTS (Make-to-Stock) - MTS needs high-volume, standardized production like Continuous Flow or Assembly Line.",
         options: [
             "True",
             "False"
@@ -115,6 +120,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Manufacturing of a small, fixed quantity of an item in a single production run is related to what process?",
+        hint: "<strong>Production Processes:</strong><br><strong>Batching:</strong> Producing a FIXED QUANTITY of one product, then stopping and switching to another product. Small batches of specific items.<br><strong>Continuous Flow:</strong> Non-stop production of the same product(s)<br><strong>Job Shop:</strong> One-of-a-kind, highly customized items",
         options: [
             "Continuous Flow",
             "Batching",
@@ -126,6 +132,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "The concept of moving people and materials when and where needed, and as soon as possible is considered value stream mapping.",
+        hint: "<strong>Key Lean Concepts:</strong><br><strong>Value Stream Mapping:</strong> A tool/method to VISUALIZE and identify waste in processes. Shows flow of materials and information.<br><strong>Just-in-Time (JIT):</strong> Moving materials/people when and where needed, as soon as possible. Minimizes inventory and waste.<br>The definition describes JIT, NOT value stream mapping.",
         options: [
             "True",
             "False"
@@ -136,6 +143,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Crosby developed one of the first tools in the quality management process, the Cause-and-Effect Diagram.",
+        hint: "<strong>Quality Management Pioneers:</strong><br><strong>Crosby:</strong> Known for 'Zero Defects' concept and Cost of Quality framework<br><strong>Ishikawa:</strong> Developed the Cause-and-Effect Diagram (also called Fishbone Diagram or Ishikawa Diagram)<br><strong>Deming:</strong> PDCA cycle and continuous improvement<br><strong>Juran:</strong> Quality trilogy",
         options: [
             "True",
             "False"
@@ -146,6 +154,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "The root cause is the core issue that sets in motion the entire cause-and-effect reaction that ultimately leads to the problem.",
+        hint: "<strong>Root Cause Analysis:</strong><br>The ROOT CAUSE is the underlying reason or core issue that, if fixed, will ELIMINATE the problem and prevent it from happening again. It's the foundation that triggers the entire chain reaction of problems. Identifying root causes is essential for permanent solutions, not just treating symptoms.",
         options: [
             "True",
             "False"
@@ -156,6 +165,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Who is quality defined by in operations?",
+        hint: "<strong>Quality Definition - CRITICAL CONCEPT:</strong><br><strong>Quality is defined by the CUSTOMER</strong>, not by the manufacturer or supplier. Customer expectations, needs, and satisfaction determine what 'quality' means. If the customer is satisfied, it's quality. If not, it's not quality - regardless of what the company thinks.",
         options: [
             "Supplier",
             "Customer",
@@ -169,6 +179,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Lean manufacturing focuses primarily on eliminating what from production?",
+        hint: "<strong>Lean Manufacturing Core Principle:</strong><br><strong>WASTE (Muda)</strong> is the primary target. Lean identifies and eliminates all forms of waste including: overproduction, waiting time, transportation, excess inventory, defects, over-processing, and unused employee talent. Lean = LEAN OUT THE WASTE",
         options: [
             "Employees",
             "Waste",
@@ -181,6 +192,7 @@ const quizQuestions = [
     {
         chapter: 8,
         question: "Which of the following is a characteristic of continuous flow manufacturing?",
+        hint: "<strong>Continuous Flow Manufacturing:</strong><br>• Products flow continuously through production with minimal stoppages<br>• HIGH-VOLUME, STANDARDIZED products<br>• Examples: Assembly lines, automotive plants, food processing<br>• Opposite: Batch, Job Shop, or MTO processes which have stoppages and setup times",
         options: [
             "Products are made in batches",
             "Production is customized per order",
@@ -479,15 +491,23 @@ function showQuestion() {
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('finishBtn').style.display = 'none';
     
-    // Update study materials based on question's chapter
+    // Hide hint panel by default and display question-specific hint
+    const hintPanel = document.getElementById('hintPanel');
+    const hintBtn = document.getElementById('hintBtn');
     const materialsDiv = document.getElementById('studyMaterials');
-    if (materialsDiv) {
-        if (question.chapter !== 'mixed') {
-            // For specific chapter questions, show that chapter's materials
-            materialsDiv.innerHTML = chapterMaterials[String(question.chapter)];
+    
+    if (hintPanel && materialsDiv) {
+        // Hide panel by default
+        hintPanel.style.display = 'none';
+        if (hintBtn) {
+            hintBtn.textContent = '❓ Show Hint & Study Materials';
+        }
+        
+        // Display question-specific hint
+        if (question.hint) {
+            materialsDiv.innerHTML = question.hint;
         } else {
-            // For mixed questions, show all chapters overview
-            materialsDiv.innerHTML = chapterMaterials["all"];
+            materialsDiv.innerHTML = '<p style="color: #999;">No hint available for this question.</p>';
         }
     }
     
@@ -637,6 +657,22 @@ function backToMenu() {
     `;
 }
 
+// Toggle hint panel visibility
+function toggleHint() {
+    const hintPanel = document.getElementById('hintPanel');
+    const hintBtn = document.getElementById('hintBtn');
+    
+    if(hintPanel && hintBtn) {
+        if(hintPanel.style.display === 'none' || !hintPanel.style.display) {
+            hintPanel.style.display = 'block';
+            hintBtn.textContent = '✕ Hide Hint & Study Materials';
+        } else {
+            hintPanel.style.display = 'none';
+            hintBtn.textContent = '❓ Show Hint & Study Materials';
+        }
+    }
+}
+
 // Initialize on page load
 window.addEventListener('load', function() {
     console.log('Game script loaded');
@@ -652,3 +688,4 @@ window.updateStudyMaterials = updateStudyMaterials;
 window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 window.finishQuiz = finishQuiz;
+window.toggleHint = toggleHint;
