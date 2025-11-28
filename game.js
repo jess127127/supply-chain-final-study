@@ -898,16 +898,298 @@ function toggleHint() {
     const hintPanel = document.getElementById('hintPanel');
     const hintBtn = document.getElementById('hintBtn');
     
-    if(hintPanel && hintBtn) {
-        if(hintPanel.style.display === 'none' || !hintPanel.style.display) {
-            hintPanel.style.display = 'block';
-            hintBtn.textContent = '✕ Hide Hint & Study Materials';
-        } else {
-            hintPanel.style.display = 'none';
-            hintBtn.textContent = '❓ Show Hint & Study Materials';
+// Study Slides Content
+const slidesContent = {
+    "7": {
+        title: "Chapter 7: Supplier Relationship Management",
+        content: `
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Overview</h3>
+            <p>Supplier Relationship Management (SRM) focuses on the front part of the supply chain, managing and building strategic relationships with suppliers and vendors who provide critical materials and components.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Strategic vs Tactical Partnerships</h3>
+            <p><strong>Strategic Partnerships:</strong> Long-term alliances focused on major business objectives, competitive advantage, and mutual growth. Not just tactical/operational details.</p>
+            <p><strong>Tactical Relationships:</strong> Short-term, operational activities and transactions.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Keys to Building Strategic Relationships</h3>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Managing Change:</strong> Handling transitions and improvements effectively</li>
+                <li><strong>Having a Shared Vision and Objectives:</strong> Alignment on goals and direction</li>
+                <li><strong>Continuous Improvement:</strong> Ongoing enhancement of quality and processes</li>
+                <li><strong>Cost Management:</strong> Working together on cost optimization</li>
+                <li><strong>Trust:</strong> Foundation for open communication and problem-solving</li>
+            </ul>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Role of Trust</h3>
+            <p><strong>WITH TRUST:</strong> Partners are MORE LIKELY to work together, communicate openly, find compromise solutions, and take risks together.</p>
+            <p><strong>WITHOUT TRUST:</strong> Partners are LESS LIKELY to collaborate and may focus only on minimizing individual risk.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Continuous Improvement (Kaizen)</h3>
+            <p>Making a series of small improvements over time results in the elimination of waste in a system. This ongoing enhancement is critical in supplier relationships.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Total Cost of Ownership (TCO)</h3>
+            <p>TCO includes ALL costs associated with a good or service:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Acquisition:</strong> Purchase price, setup, implementation</li>
+                <li><strong>Use:</strong> Training, support, operation</li>
+                <li><strong>Maintenance:</strong> Repairs, updates, sustaining</li>
+            </ul>
+            <p>Not just purchase price - it's the TOTAL lifecycle cost.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Supplier Performance Management</h3>
+            <p>It is critical to actively monitor a supplier's performance and provide visibility and feedback through:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Regular tracking of quality, delivery, and cost metrics</li>
+                <li>Providing constructive feedback for improvements</li>
+                <li>Offering visibility into operations to identify issues early</li>
+                <li>Preventing problems through proactive communication</li>
+            </ul>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">ISO Standards</h3>
+            <p><strong>ISO 9000:</strong> A series of QUALITY MANAGEMENT standards, not environmental.</p>
+            <p><strong>ISO 14000:</strong> Environmental Management Systems standards.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Supplier Development</h3>
+            <p>The technical and financial assistance given to existing and potential suppliers to improve quality and/or delivery performance. This creates win-win relationships and strengthens the supply chain.</p>
+            <p>Includes process improvements, equipment upgrades, training, and investments.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">SRM System Implementation</h3>
+            <p>An SRM system can ONLY be implemented successfully when aligned with associated business process changes. Technology alone is not sufficient - organizations must:</p>
+            <ul style="margin-left: 20px;">
+                <li>Change workflows and processes</li>
+                <li>Train employees on new approaches</li>
+                <li>Shift organizational culture</li>
+                <li>Redesign procedures holistically</li>
+            </ul>
+        `
+    },
+    "8": {
+        title: "Chapter 8: Operations Management",
+        content: `
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Overview</h3>
+            <p>Operations Management refers to managing the process to convert inputs (materials, labor, capital) into outputs (finished goods/services) to meet customer demands and organizational goals efficiently.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Manufacturing Strategies</h3>
+            <p><strong>Make-to-Stock (MTS):</strong> Products made in advance and stored. SHORTEST lead time (product ready to ship immediately).</p>
+            <p><strong>Make-to-Order (MTO):</strong> Production begins ONLY after receiving customer order. Reduces inventory but increases lead time. Works well with Job Shop processes.</p>
+            <p><strong>Assemble-to-Order (ATO):</strong> Pre-designed components ready; assembly happens after order. Medium lead time.</p>
+            <p><strong>Engineer-to-Order (ETO):</strong> Design, engineer, and build from scratch for customer specifications. LONGEST lead time.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Production Processes</h3>
+            <p><strong>Job Shop:</strong> Low-volume, highly customized production. Each job is unique and requires extensive setup time. Aligns with MTO or ETO.</p>
+            <p><strong>Batching:</strong> Producing a fixed quantity of one product, then stopping and switching to another product.</p>
+            <p><strong>Continuous Flow:</strong> Non-stop production of the same product(s). High-volume, standardized products. Aligns with MTS.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Lean Manufacturing</h3>
+            <p>Lean focuses primarily on eliminating WASTE (Muda) from production. Forms of waste include:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Overproduction</li>
+                <li>Waiting time</li>
+                <li>Transportation inefficiency</li>
+                <li>Excess inventory</li>
+                <li>Defects and rework</li>
+                <li>Over-processing</li>
+                <li>Unused employee talent</li>
+            </ul>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Just-in-Time (JIT)</h3>
+            <p>Moving people and materials when and where needed, as soon as possible. JIT minimizes inventory and waste - it's a Lean principle, not the same as value stream mapping.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Value Stream Mapping</h3>
+            <p>A tool/method to VISUALIZE and identify waste in processes. Shows the flow of materials and information. Used to support Lean and JIT implementation.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Quality Management Pioneers</h3>
+            <p><strong>Ishikawa:</strong> Developed the Cause-and-Effect Diagram (Fishbone Diagram)</p>
+            <p><strong>Crosby:</strong> Known for "Zero Defects" concept and Cost of Quality framework</p>
+            <p><strong>Deming:</strong> PDCA cycle and continuous improvement</p>
+            <p><strong>Juran:</strong> Quality trilogy (Planning, Control, Improvement)</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Root Cause Analysis</h3>
+            <p>The ROOT CAUSE is the underlying reason or core issue that, if fixed, will ELIMINATE the problem and prevent it from happening again. It's the foundation that triggers the entire chain reaction of problems. Identifying root causes is essential for permanent solutions, not just treating symptoms.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Quality Definition</h3>
+            <p>Quality is defined by the CUSTOMER, not by the manufacturer or supplier. Customer expectations, needs, and satisfaction determine what 'quality' means.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Continuous Flow Manufacturing</h3>
+            <p>Characteristics of continuous flow:</p>
+            <ul style="margin-left: 20px;">
+                <li>Products flow continuously through production with minimal stoppages</li>
+                <li>HIGH-VOLUME, STANDARDIZED products</li>
+                <li>Examples: Assembly lines, automotive plants, food processing</li>
+            </ul>
+        `
+    },
+    "9": {
+        title: "Chapter 9: Logistics & Warehousing",
+        content: `
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Overview</h3>
+            <p>Logistics refers to the management of the movement and storage of goods and information throughout the supply chain. It encompasses transportation, warehousing, tracking, and coordination.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Primary Transportation Modes</h3>
+            <p><strong>Air:</strong> Fastest, most expensive. Used for time-sensitive goods and emergency shipments.</p>
+            <p><strong>Road/Truck:</strong> Flexible and adaptable. Used for last-mile delivery and local distribution. Most widely used for final delivery.</p>
+            <p><strong>Rail:</strong> Cost-effective for large volumes over long distances. Good for heavy bulk goods.</p>
+            <p><strong>Water/Maritime:</strong> Least expensive per unit. Best for international and bulk shipping.</p>
+            <p><strong>Pipeline:</strong> Used for liquids and gases (oil, natural gas, chemicals).</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Warehousing Functions</h3>
+            <p>Warehousing involves multiple value-added activities beyond just storage:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Storage:</strong> Keeping inventory safe and organized</li>
+                <li><strong>Consolidation:</strong> Combining smaller shipments into larger ones</li>
+                <li><strong>Cross-docking:</strong> Transferring goods with minimal storage time</li>
+                <li><strong>Order fulfillment:</strong> Picking, packing, and labeling orders</li>
+                <li><strong>Customization:</strong> Final assembly, packaging, labeling</li>
+                <li><strong>Returns processing:</strong> Handling returns and damaged goods</li>
+            </ul>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Distribution Network Strategies</h3>
+            <p><strong>More Distribution Centers:</strong> Lower transportation costs (shorter distances) but higher inventory costs (more locations to stock). Focuses on CUSTOMER SERVICE AND RESPONSIVENESS.</p>
+            <p><strong>Fewer Distribution Centers:</strong> Higher transportation costs (longer distances) but lower inventory costs (centralized). Focuses on COST MINIMIZATION.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Last-Mile Delivery</h3>
+            <p>The final step in the logistics network where products are delivered from the distribution center/warehouse directly to the customer's doorstep.</p>
+            <p><strong>Why it matters:</strong> Most expensive part of logistics on a per-unit basis. Critical for customer satisfaction and experience. Growing challenge due to e-commerce expectations for speed and flexibility.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Supply Chain Visibility</h3>
+            <p>The ability to see and track products and shipments in real-time throughout the logistics network. Enables:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Real-time tracking of shipment location</li>
+                <li>Early warning of delays or issues</li>
+                <li>Informed decision-making about routing and resources</li>
+                <li>Accurate customer information</li>
+                <li>Proactive problem-solving before delivery impact</li>
+            </ul>
+            <p>Modern supply chains use GPS, RFID, IoT sensors, and data analytics for visibility.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Warehouse Location Strategies</h3>
+            <p><strong>Customer-Focused/Geographic:</strong> Place distribution centers near major customer concentrations. Enables faster delivery and better customer service.</p>
+            <p><strong>Production-Focused:</strong> Place near manufacturing. Reduces inbound transportation costs.</p>
+            <p><strong>Supply-Focused:</strong> Place near suppliers. Easier replenishment and inbound logistics.</p>
+            <p><strong>Hub-and-Spoke:</strong> Central hub with satellite locations for efficiency.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Bullwhip Effect</h3>
+            <p>Small changes in customer demand at retail level create increasingly LARGER demand fluctuations as you move upstream (to distributors, manufacturers, suppliers).</p>
+            <p><strong>Example:</strong> 5% customer demand increase → 10% distributor order → 20% manufacturer order → 30% supplier order</p>
+            <p><strong>Why it's bad:</strong> Causes excessive inventory, inefficient production, and wasted resources throughout the supply chain.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Cross-Docking</h3>
+            <p>A high-speed transfer logistics strategy where goods are:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li>Received at the dock</li>
+                <li>Sorted and consolidated</li>
+                <li>Transferred directly to outbound trucks in hours (not days/weeks)</li>
+                <li>Minimal or no storage time in warehouse</li>
+            </ul>
+            <p>Benefits: Reduces inventory carrying costs significantly. Requires coordinated transportation and excellent visibility. Used by companies like Walmart and Amazon for speed and efficiency.</p>
+            
+            <h3 style="color: #667eea; margin: 15px 0; border-bottom: 2px solid #667eea; padding-bottom: 10px;">Logistics Optimization</h3>
+            <p>Optimization balances MULTIPLE objectives, not just cost:</p>
+            <ul style="margin-left: 20px; margin-bottom: 15px;">
+                <li><strong>Cost:</strong> Transportation, warehousing, labor</li>
+                <li><strong>Service:</strong> Delivery speed, reliability, accuracy</li>
+                <li><strong>Sustainability:</strong> Environmental impact, emissions</li>
+                <li><strong>Risk:</strong> Reliability, contingency planning</li>
+            </ul>
+            <p>Modern optimization uses analytics to find the BEST BALANCE between cost and service. You cannot sacrifice customer service just for lower costs.</p>
+        `
+    }
+};
+
+// Text-to-Speech functionality
+let textToSpeechEnabled = false;
+
+function toggleTextToSpeech() {
+    textToSpeechEnabled = !textToSpeechEnabled;
+    const btn = document.getElementById('speakBtn');
+    if (textToSpeechEnabled) {
+        btn.textContent = '🔊 Text-to-Speech: ON (Click text to hear)';
+        btn.style.background = '#667eea';
+        btn.style.color = 'white';
+        makeTextClickable();
+    } else {
+        btn.textContent = '🔇 Enable Text-to-Speech';
+        btn.style.background = '';
+        btn.style.color = '';
+        removeTextClickable();
+    }
+}
+
+function makeTextClickable() {
+    const slideContent = document.getElementById('slideContent');
+    if (!slideContent) return;
+    
+    // Make all text elements clickable
+    const elements = slideContent.querySelectorAll('p, li, h3, h2, h1');
+    elements.forEach(el => {
+        el.style.cursor = 'pointer';
+        el.style.transition = 'background-color 0.2s ease';
+        el.addEventListener('click', function(e) {
+            e.stopPropagation();
+            speakText(this.textContent);
+        });
+        el.addEventListener('mouseenter', function() {
+            if (textToSpeechEnabled) {
+                this.style.backgroundColor = '#ffe0b2';
+            }
+        });
+        el.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = '';
+        });
+    });
+}
+
+function removeTextClickable() {
+    const slideContent = document.getElementById('slideContent');
+    if (!slideContent) return;
+    
+    const elements = slideContent.querySelectorAll('p, li, h3, h2, h1');
+    elements.forEach(el => {
+        el.style.cursor = 'default';
+        el.style.backgroundColor = '';
+        el.removeEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+        el.removeEventListener('mouseenter', function() {});
+        el.removeEventListener('mouseleave', function() {});
+    });
+}
+
+function speakText(text) {
+    if (!textToSpeechEnabled) return;
+    
+    // Cancel any currently speaking text
+    speechSynthesis.cancel();
+    
+    // Create utterance
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9; // Slightly slower for clarity
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    
+    // Speak
+    speechSynthesis.speak(utterance);
+}
+
+function showChapterSlides() {
+    const chapter = document.getElementById('slidesChapter').value;
+    const slides = slidesContent[chapter];
+    
+    if (slides) {
+        document.getElementById('slideTitle').textContent = slides.title;
+        document.getElementById('slideContent').innerHTML = slides.content;
+        
+        // Re-apply text-to-speech if enabled
+        if (textToSpeechEnabled) {
+            makeTextClickable();
         }
     }
 }
+
+// Show first chapter slides on load
+function initSlides() {
+    showChapterSlides();
+}
+
 
 // Initialize on page load
 window.addEventListener('load', function() {
@@ -925,3 +1207,7 @@ window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 window.finishQuiz = finishQuiz;
 window.toggleHint = toggleHint;
+window.showChapterSlides = showChapterSlides;
+window.toggleTextToSpeech = toggleTextToSpeech;
+window.speakText = speakText;
+window.initSlides = initSlides;
