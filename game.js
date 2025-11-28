@@ -560,6 +560,14 @@ function showQuestion() {
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('finishBtn').style.display = 'none';
     
+    // Update study materials based on question's chapter
+    const materialsDiv = document.getElementById('studyMaterials');
+    if (materialsDiv && question.chapter !== 'mixed') {
+        materialsDiv.innerHTML = chapterMaterials[String(question.chapter)] || chapterMaterials["all"];
+    } else if (materialsDiv) {
+        materialsDiv.innerHTML = chapterMaterials["all"];
+    }
+    
     updateQuizScore();
 }
 
