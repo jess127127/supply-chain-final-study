@@ -336,6 +336,10 @@
             .menu {
                 grid-template-columns: 1fr;
             }
+
+            #quizSection > div > div:nth-child(3) {
+                grid-template-columns: 1fr !important;
+            }
         }
     </style>
 </head>
@@ -403,15 +407,30 @@
                 <div class="progress-fill" id="progressFill"></div>
             </div>
 
-            <div class="question-number" id="questionNumber"></div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+                <!-- Question Section -->
+                <div>
+                    <div class="question-number" id="questionNumber"></div>
+                    
+                    <div class="question-text" id="questionText"></div>
+                    
+                    <div class="answer-options" id="answerOptions"></div>
+                    
+                    <div id="quizResult"></div>
+                </div>
+
+                <!-- Study Materials Section -->
+                <div>
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <h3 style="color: #667eea; margin-bottom: 15px;">📖 Study Materials</h3>
+                        <div id="studyMaterials" style="max-height: 500px; overflow-y: auto; font-size: 0.95em; line-height: 1.6; color: #333;">
+                            <p style="color: #999;">Select a chapter to see key concepts...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="question-text" id="questionText"></div>
-            
-            <div class="answer-options" id="answerOptions"></div>
-            
-            <div id="quizResult"></div>
-            
-            <div class="button-group">
+            <div class="button-group" style="margin-top: 20px;">
                 <button class="btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question →</button>
                 <button class="btn-primary" id="finishBtn" onclick="finishQuiz()" style="display: none;">Finish Quiz</button>
             </div>

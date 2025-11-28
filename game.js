@@ -272,16 +272,65 @@ const quizQuestions = [
     }
 ];
 
-// Game Variables
-let hangmanWord = '';
-let hangmanHint = '';
-let guessedLetters = [];
-let wrongGuesses = 0;
-const maxWrongGuesses = 6;
-let currentQuestionIndex = 0;
-let quizScore = 0;
-let currentQuiz = [];
-let selectedAnswer = null;
+// Chapter Study Materials
+const chapterMaterials = {
+    7: `
+        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 7: Supplier Relationship Management</h4>
+        <p><strong>Key Concepts:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Supplier Selection:</strong> Choosing the right suppliers based on quality, cost, and reliability</li>
+            <li><strong>Vendor Management:</strong> Ongoing relationship and performance monitoring</li>
+            <li><strong>Procurement:</strong> Process of acquiring goods and services</li>
+            <li><strong>Contracts:</strong> Legal agreements defining terms and expectations</li>
+            <li><strong>Quality Standards:</strong> Certifications and audits to ensure excellence</li>
+            <li><strong>Performance Metrics:</strong> On-time delivery, quality levels, responsiveness</li>
+            <li><strong>Strategic Partnerships:</strong> Long-term collaboration for mutual benefit</li>
+            <li><strong>Risk Management:</strong> Identifying and mitigating supplier-related risks</li>
+        </ul>
+        <p><strong>Important Terms:</strong> Procurement, Vendor, Negotiation, Contract, Certification, Audit, Integration, Transparency</p>
+    `,
+    8: `
+        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 8: Operations Management</h4>
+        <p><strong>Key Concepts:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Lean Production:</strong> Eliminating waste while maximizing value</li>
+            <li><strong>Just-in-Time (JIT):</strong> Producing exactly what's needed, when needed</li>
+            <li><strong>Capacity Planning:</strong> Determining production capability and limitations</li>
+            <li><strong>Quality Control:</strong> Ensuring products meet specified standards</li>
+            <li><strong>Process Improvement:</strong> Continuous methods to enhance efficiency</li>
+            <li><strong>Inventory Management:</strong> Balancing stock levels with demand</li>
+            <li><strong>Production Scheduling:</strong> Planning work to meet demand efficiently</li>
+            <li><strong>Six Sigma:</strong> Data-driven approach to process improvement</li>
+        </ul>
+        <p><strong>Important Terms:</strong> Lean, Continuous, Efficiency, Capacity, Inventory, Control, Improvement, Process</p>
+    `,
+    9: `
+        <h4 style="color: #667eea; margin-bottom: 10px;">Chapter 9: Logistics & Warehousing</h4>
+        <p><strong>Key Concepts:</strong></p>
+        <ul style="margin-left: 20px; margin-bottom: 15px;">
+            <li><strong>Warehouse Management:</strong> Storage, handling, and inventory tracking</li>
+            <li><strong>Distribution Networks:</strong> System of facilities and transportation routes</li>
+            <li><strong>Transportation Modes:</strong> Truck, rail, air, ship - each with pros/cons</li>
+            <li><strong>Order Fulfillment:</strong> Complete process from order to delivery</li>
+            <li><strong>Supply Chain Visibility:</strong> Real-time tracking of shipments</li>
+            <li><strong>Last-Mile Delivery:</strong> Final step getting product to customer</li>
+            <li><strong>Location Strategy:</strong> Optimal placement of distribution centers</li>
+            <li><strong>Cost Optimization:</strong> Reducing logistics expenses without sacrificing service</li>
+        </ul>
+        <p><strong>Important Terms:</strong> Logistics, Warehousing, Distribution, Transportation, Fulfillment, Tracking, Network, Optimization</p>
+    `,
+    all: `
+        <h4 style="color: #667eea; margin-bottom: 10px;">Supply Chain Overview</h4>
+        <p>The supply chain consists of three main areas:</p>
+        <ul style="margin-left: 20px; margin-bottom: 10px;">
+            <li><strong>Chapter 7:</strong> Managing supplier relationships for quality and value</li>
+            <li><strong>Chapter 8:</strong> Operating efficiently to produce goods</li>
+            <li><strong>Chapter 9:</strong> Moving products to customers effectively</li>
+        </ul>
+        <p style="margin-top: 10px; font-size: 0.9em; color: #666;"><em>Tip: Review all chapters to understand how they interconnect!</em></p>
+    `
+};
+
 
 // Hangman Functions
 function getRandomTerm(chapter) {
@@ -469,6 +518,11 @@ function resetQuiz() {
     document.getElementById('quizResult').innerHTML = '';
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('finishBtn').style.display = 'none';
+    
+    // Update study materials
+    const materialKey = chapter === 'all' ? 'all' : parseInt(chapter);
+    document.getElementById('studyMaterials').innerHTML = chapterMaterials[materialKey] || chapterMaterials.all;
+    
     showQuestion();
 }
 
@@ -615,15 +669,30 @@ function backToMenu() {
             <div class="progress-fill" id="progressFill"></div>
         </div>
 
-        <div class="question-number" id="questionNumber"></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px;">
+            <!-- Question Section -->
+            <div>
+                <div class="question-number" id="questionNumber"></div>
+                
+                <div class="question-text" id="questionText"></div>
+                
+                <div class="answer-options" id="answerOptions"></div>
+                
+                <div id="quizResult"></div>
+            </div>
+
+            <!-- Study Materials Section -->
+            <div>
+                <div style="background: #f9f9f9; padding: 20px; border-radius: 10px; border-left: 4px solid #667eea;">
+                    <h3 style="color: #667eea; margin-bottom: 15px;">📖 Study Materials</h3>
+                    <div id="studyMaterials" style="max-height: 500px; overflow-y: auto; font-size: 0.95em; line-height: 1.6; color: #333;">
+                        <p style="color: #999;">Select a chapter to see key concepts...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
-        <div class="question-text" id="questionText"></div>
-        
-        <div class="answer-options" id="answerOptions"></div>
-        
-        <div id="quizResult"></div>
-        
-        <div class="button-group">
+        <div class="button-group" style="margin-top: 20px;">
             <button class="btn-primary" id="nextBtn" onclick="nextQuestion()" style="display: none;">Next Question →</button>
             <button class="btn-primary" id="finishBtn" onclick="finishQuiz()" style="display: none;">Finish Quiz</button>
         </div>
