@@ -653,10 +653,12 @@ function checkHangmanResult() {
 // Quiz Functions
 function getQuizQuestions(chapter) {
     if (chapter === 'all') {
-        return quizQuestions.sort(() => Math.random() - 0.5).slice(0, 10);
+        // Return all questions mixed and randomized
+        return quizQuestions.sort(() => Math.random() - 0.5);
     }
+    // Return ALL questions for the chapter (not just 10) so student sees all concepts
     const filtered = quizQuestions.filter(q => q.chapter === parseInt(chapter) || q.chapter === 'mixed');
-    return filtered.sort(() => Math.random() - 0.5).slice(0, 10);
+    return filtered.sort(() => Math.random() - 0.5);
 }
 
 function resetQuiz() {
