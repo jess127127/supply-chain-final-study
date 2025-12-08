@@ -282,6 +282,79 @@
             width: fit-content;
         }
 
+        /* Flashcards */
+        .flashcard-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 25px;
+            align-items: stretch;
+            margin-top: 20px;
+        }
+
+        .flashcard-card {
+            background: linear-gradient(135deg, #f4f5ff 0%, #eef3ff 100%);
+            border: 2px solid #667eea;
+            border-radius: 14px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 260px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.15);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .flashcard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.25);
+        }
+
+        .flashcard-term {
+            font-size: 2em;
+            font-weight: 800;
+            color: #4b5bdc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+
+        .flashcard-definition {
+            margin-top: 18px;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #333;
+            background: white;
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 4px solid #764ba2;
+        }
+
+        .flashcard-definition.hidden {
+            display: none;
+        }
+
+        .flashcard-progress {
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .flashcard-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .flashcard-tip {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 16px;
+            border-left: 4px solid #667eea;
+            color: #444;
+            line-height: 1.6;
+        }
+
         .game-result {
             text-align: center;
             padding: 30px;
@@ -340,6 +413,10 @@
             #quizSection > div > div:nth-child(3) {
                 grid-template-columns: 1fr !important;
             }
+
+            .flashcard-layout {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -354,6 +431,7 @@
                 <button class="menu-btn" onclick="startGame('hangman')">🎮 Hangman Game</button>
                 <button class="menu-btn" onclick="startGame('quiz')">❓ Multiple Choice Quiz</button>
                 <button class="menu-btn" onclick="startGame('slides')">📚 Study Slides</button>
+                <button class="menu-btn" onclick="startGame('flashcards')">🧠 Flashcards</button>
             </div>
         </div>
 
@@ -453,6 +531,47 @@
                 <div id="allSlideContent" style="font-size: 1.05em; line-height: 1.8; color: #333;">
                     <!-- All content loaded dynamically -->
                 </div>
+            </div>
+        </div>
+
+        <!-- Flashcard Study Section -->
+        <div id="flashcardSection" class="game-section">
+            <button class="btn-secondary back-btn" onclick="backToMenu()">← Back to Menu</button>
+
+            <div class="chapter-select">
+                <label>Select Chapter:</label>
+                <select id="flashcardChapter" onchange="resetFlashcards()">
+                    <option value="all">All Chapters (Mixed)</option>
+                    <option value="7">Chapter 7 - Supplier Relationship Management</option>
+                    <option value="8">Chapter 8 - Operations Management</option>
+                    <option value="9">Chapter 9 - Logistics & Warehousing</option>
+                </select>
+            </div>
+
+            <div class="flashcard-layout">
+                <div class="flashcard-card">
+                    <div class="flashcard-progress" id="flashcardProgress">Card 0 of 0</div>
+                    <div class="flashcard-term" id="flashcardTerm">Loading...</div>
+                    <div class="flashcard-definition hidden" id="flashcardDefinition"></div>
+                </div>
+
+                <div class="flashcard-tip">
+                    <h3 style="color: #667eea; margin-bottom: 10px;">Study smarter</h3>
+                    <ul style="margin-left: 18px; margin-bottom: 14px; color: #333;">
+                        <li>Flip the card to read the definition, then try to restate it in your own words.</li>
+                        <li>Use the "Mark as Known" button to track which terms you have mastered.</li>
+                        <li>Shuffle the deck for quick refreshers before quizzes or exams.</li>
+                    </ul>
+                    <div style="font-weight: 700; color: #764ba2;">Mastered: <span id="flashcardKnown">0</span></div>
+                </div>
+            </div>
+
+            <div class="flashcard-actions" style="margin-top: 18px;">
+                <button class="btn-secondary" onclick="previousFlashcard()">← Previous</button>
+                <button class="btn-primary" onclick="toggleFlashcard()">Flip / Show Definition</button>
+                <button class="btn-secondary" onclick="nextFlashcard()">Next →</button>
+                <button class="btn-primary" onclick="markFlashcardKnown()">Mark as Known</button>
+                <button class="btn-secondary" onclick="shuffleFlashcards()">Shuffle Deck</button>
             </div>
         </div>
     </div>

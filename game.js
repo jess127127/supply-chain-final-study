@@ -57,8 +57,266 @@ const chapter9Terms = {
     "OPTIMIZATION": "Making the logistics system work most efficiently"
 };
 
+const chapterTermMap = {
+    "7": chapter7Terms,
+    "8": chapter8Terms,
+    "9": chapter9Terms
+};
+
+let hangmanWord = '';
+let hangmanHint = '';
+let guessedLetters = [];
+let wrongGuesses = 0;
+const maxWrongGuesses = 6;
+let currentQuiz = [];
+let currentQuestionIndex = 0;
+let quizScore = 0;
+let selectedAnswer = null;
+
+// Flashcard state
+let flashcards = [];
+let flashcardIndex = 0;
+let flashcardRevealed = false;
+let masteredCards = new Set();
+
 // Quiz Questions with Hint Definitions
 const quizQuestions = [
+    // New practice set from uploaded essay/short-answer screenshots - converted to quick multiple choice / recall
+    {
+        chapter: 7,
+        question: "Which list shows five keys to a successful strategic partnership?",
+        hint: "<strong>Strategic Partnership Keys (pick any 5):</strong><br>Build Trust • Shared Objectives and Visions • Personal Relationships • Mutual Benefits and Needs • Gaining Commitment from Top Management",
+        options: [
+            "Build Trust, Shared Objectives, Personal Relationships, Mutual Benefits, Top Management Commitment",
+            "Lowest Price, Annual Rebates, Late Fees, Expedites, No Long-Term Contracts",
+            "Secrecy, Single-Sourcing Only, Short-Term Focus, Minimal Communication, Lowest Bidder Wins",
+            "Rigid Contracts, Fixed Specs Only, No Flexibility, No Feedback, No Improvement"
+        ],
+        correct: 0,
+        explanation: "Strategic partnerships are built on trust, aligned objectives, relationships, mutual benefit, and executive commitment."
+    },
+    {
+        chapter: 7,
+        question: "Which five characteristics matter when developing and implementing an SRM system?",
+        hint: "<strong>SRM System Characteristics:</strong><br>Automation • Integration • Visibility • Collaboration • Optimization",
+        options: [
+            "Automation, Integration, Visibility, Collaboration, Optimization",
+            "Advertising, Outsourcing, Bartering, Price Floors, Deflation",
+            "Lobbying, Exclusivity, Tariffs, Seasonal Discounts, Shelf Space",
+            "Speculation, Arbitrage, Short Selling, Hedging, Diversification"
+        ],
+        correct: 0,
+        explanation: "Effective SRM systems emphasize automation, integration, visibility, collaboration, and optimization."
+    },
+    {
+        chapter: 8,
+        question: "Which operating philosophy in Chapter 8 is used to help manage operations in the supply chain?",
+        hint: "<strong>Chapter 8 Operating Philosophy:</strong><br>Lean = eliminate waste, improve flow, deliver value to the customer.",
+        options: [
+            "Lean",
+            "Decentralization",
+            "Diversification",
+            "Vertical Integration"
+        ],
+        correct: 0,
+        explanation: "Lean is the Chapter 8 operating philosophy focused on waste elimination and value flow."
+    },
+    {
+        chapter: 8,
+        question: "What is the main objective of Lean?",
+        hint: "<strong>Lean Objective:</strong><br>Eliminate waste, enhance customer value, minimize resources while improving flow, quality, and service.",
+        options: [
+            "Eliminate waste and improve flow/value with minimal resources",
+            "Maximize on-hand inventory at all times",
+            "Increase product variety regardless of cost",
+            "Delay deliveries to consolidate shipments"
+        ],
+        correct: 0,
+        explanation: "Lean focuses on removing waste and improving flow and value while using fewer resources."
+    },
+    {
+        chapter: 8,
+        question: "Which quality management process in Chapter 8 (not TQM) is data-driven and aims for near-perfect quality?",
+        hint: "<strong>Chapter 8 Quality Process:</strong><br>Six Sigma uses data/statistics to reduce variation and defects.",
+        options: [
+            "Six Sigma",
+            "ISO 14000",
+            "Benchmarking Only",
+            "Total Quality Management"
+        ],
+        correct: 0,
+        explanation: "Six Sigma is the data-driven quality methodology highlighted in Chapter 8."
+    },
+    {
+        chapter: 8,
+        question: "What is the core objective of Six Sigma?",
+        hint: "<strong>Six Sigma Objective:</strong><br>Reduce process variation and defects using data/statistics to improve quality, cost, and customer satisfaction.",
+        options: [
+            "Reduce process variation and defects via data and statistical analysis",
+            "Maximize batch sizes to lower unit costs",
+            "Eliminate all inspections from the process",
+            "Standardize only the marketing messages"
+        ],
+        correct: 0,
+        explanation: "Six Sigma targets variation and defects through data-driven analysis to raise quality and satisfaction."
+    },
+    {
+        chapter: 9,
+        question: "3PL stands for what?",
+        hint: "<strong>3PL:</strong> Third Party Logistics provider.",
+        options: [
+            "Third Party Logistics",
+            "Third Party Leasing",
+            "Three-Person Leadership",
+            "Third Product Line"
+        ],
+        correct: 0,
+        explanation: "3PL is the abbreviation for Third Party Logistics."
+    },
+    {
+        chapter: 9,
+        question: "Which set lists common services a 3PL offers?",
+        hint: "<strong>3PL Services (examples):</strong><br>Inbound transportation • Outbound transportation • Warehousing • Pick & Pack • Freight Forwarding",
+        options: [
+            "Inbound transport, Outbound transport, Warehousing, Pick & Pack, Freight Forwarding",
+            "Accounting, Branding, Software Development, HR, Legal Counsel",
+            "Retail Leasing, Store Design, Merchandising, In-Store Sales, Payroll",
+            "IPO Advisory, M&A, Private Equity, Venture Funding, Audit"
+        ],
+        correct: 0,
+        explanation: "Typical 3PL services cover transport, warehousing, pick/pack, and freight forwarding."
+    },
+    {
+        chapter: 9,
+        question: "What is Cross-Docking?",
+        hint: "<strong>Cross-Docking:</strong><br>Goods move directly from inbound to outbound with little/no storage to cut inventory and speed flow.",
+        options: [
+            "Transferring inbound goods directly to outbound vehicles with minimal storage",
+            "Storing goods for long periods to build safety stock",
+            "Designing custom packaging for retail shelves",
+            "Auditing supplier financials annually"
+        ],
+        correct: 0,
+        explanation: "Cross-docking bypasses storage by sending inbound goods straight to outbound shipments."
+    },
+    {
+        chapter: 9,
+        question: "Which list shows five primary transportation modes?",
+        hint: "<strong>Five Modes:</strong><br>Trucks • Air • Rail • Water • Pipeline",
+        options: [
+            "Trucks, Air, Rail, Water, Pipeline",
+            "Scooters, Drones, Bicycles, Mopeds, Ferries",
+            "Pipeline, Conveyor, Drones, Horseback, Ropeway",
+            "Trams, Buses, Subways, Escalators, Elevators"
+        ],
+        correct: 0,
+        explanation: "Core freight modes are truck, air, rail, water, and pipeline."
+    },
+    {
+        chapter: 9,
+        question: "Which functions are primary roles of a warehouse?",
+        hint: "<strong>Primary Warehouse Functions:</strong><br>Receiving • Storage • Picking • Packing • Shipping",
+        options: [
+            "Receiving, Storage, Picking, Packing, Shipping",
+            "Executive Recruiting, Product Design, Media Buying, Legal Review, Payroll",
+            "Server Hosting, App Development, UI Design, QA Testing, Deployment",
+            "Advertising, Loyalty Programs, Couponing, Shelf Placement, Influencer Marketing"
+        ],
+        correct: 0,
+        explanation: "Warehouses focus on receiving, storing, picking, packing, and shipping goods."
+    },
+    {
+        chapter: 8,
+        question: "Which pair of strategies aligns best with batch manufacturing?",
+        hint: "<strong>Batch-Compatible Strategies:</strong><br>Make-to-Order (MTO) and Assemble-to-Order (ATO) fit batching; continuous/line flow align with MTS.",
+        options: [
+            "Make-to-Order and Assemble-to-Order",
+            "Engineer-to-Order and Make-to-Stock",
+            "Continuous Flow and Line Flow",
+            "Intermodal and Pipeline"
+        ],
+        correct: 0,
+        explanation: "Batching aligns to MTO/ATO rather than continuous flow or pure MTS."
+    },
+    {
+        chapter: 9,
+        question: "Which option lists the five R's of Reverse Logistics?",
+        hint: "<strong>Five R's:</strong><br>Repackaging • Repairs • Recalls • Recycling • Returns",
+        options: [
+            "Repackaging, Repairs, Recalls, Recycling, Returns",
+            "Refinancing, Restructuring, Referrals, Rebates, Repainting",
+            "Routing, Receiving, Reviewing, Reprinting, Resending",
+            "Recording, Reporting, Releasing, Refunding, Retaining"
+        ],
+        correct: 0,
+        explanation: "Reverse logistics focuses on repackaging, repairs, recalls, recycling, and returns."
+    },
+    {
+        chapter: 9,
+        question: "Using the Weighted-Criteria Evaluation data provided (85@25%, 95@25%, 80@30%, 95@10%, 75@5%, 80@5%), what is the supplier’s overall score?",
+        hint: "<strong>Weighted Score Calculation:</strong><br>(85×0.25)+(95×0.25)+(80×0.30)+(95×0.10)+(75×0.05)+(80×0.05)=86.25",
+        options: [
+            "86.25",
+            "78.10",
+            "91.50",
+            "69.75"
+        ],
+        correct: 0,
+        explanation: "Multiplying each rating by its weight and summing gives 86.25."
+    },
+    {
+        chapter: 8,
+        question: "Which quality tool is used to isolate potential causes of a problem during brainstorming?",
+        hint: "<strong>Cause-and-Effect (Fishbone/Ishikawa):</strong><br>Used to brainstorm and visualize root causes.",
+        options: [
+            "Cause-and-Effect Diagram",
+            "Control Chart",
+            "Scatter Diagram",
+            "Histogram"
+        ],
+        correct: 0,
+        explanation: "Cause-and-effect (fishbone) diagrams help isolate potential causes."
+    },
+    {
+        chapter: 8,
+        question: "Which quality tool graphs process performance over time to spot trends or shifts?",
+        hint: "<strong>Control Chart:</strong><br>Plots data over time with control limits to detect shifts/variation.",
+        options: [
+            "Control Chart",
+            "Pareto Analysis",
+            "Check Sheet",
+            "Flow Diagram"
+        ],
+        correct: 0,
+        explanation: "Control charts display performance over time with control limits."
+    },
+    {
+        chapter: 8,
+        question: "Which tool ranks problems from most to least severe to focus improvement effort?",
+        hint: "<strong>Pareto Analysis (80/20):</strong><br>Orders problems by impact/frequency to prioritize fixes.",
+        options: [
+            "Pareto Analysis",
+            "Scatter Diagram",
+            "Flow Diagram",
+            "Histogram"
+        ],
+        correct: 0,
+        explanation: "Pareto analysis orders issues by impact to target the vital few."
+    },
+    {
+        chapter: 8,
+        question: "Which quality tool captures frequency data at the point of occurrence?",
+        hint: "<strong>Check Sheet:</strong><br>Simple tally form to log frequencies as they happen.",
+        options: [
+            "Check Sheet",
+            "Scatter Diagram",
+            "Control Chart",
+            "Histogram"
+        ],
+        correct: 0,
+        explanation: "Check sheets record occurrences/frequencies directly."
+    },
+
     // Chapter 8 - Operations Management Questions
     {
         chapter: 8,
@@ -624,7 +882,7 @@ function guessLetter(letter, btn) {
 
 function checkHangmanResult() {
     const wordComplete = hangmanWord.split('').every(letter => guessedLetters.includes(letter));
-    
+
     if (wordComplete) {
         setTimeout(() => {
             document.getElementById('hangmanResult').innerHTML = `
@@ -648,6 +906,106 @@ function checkHangmanResult() {
             document.getElementById('letterButtons').innerHTML = '';
         }, 100);
     }
+}
+
+// Flashcard Functions
+function buildFlashcardDeck(chapter) {
+    const cards = [];
+    if (chapter === 'all') {
+        Object.keys(chapterTermMap).forEach(key => {
+            const terms = chapterTermMap[key];
+            Object.keys(terms).forEach(term => {
+                cards.push({ term, definition: terms[term], chapter: key });
+            });
+        });
+    } else if (chapterTermMap[chapter]) {
+        const terms = chapterTermMap[chapter];
+        Object.keys(terms).forEach(term => {
+            cards.push({ term, definition: terms[term], chapter });
+        });
+    }
+    return cards;
+}
+
+function updateMasteredCount() {
+    const mastered = document.getElementById('flashcardKnown');
+    if (mastered) {
+        mastered.textContent = masteredCards.size;
+    }
+}
+
+function updateFlashcardDisplay() {
+    const termEl = document.getElementById('flashcardTerm');
+    const defEl = document.getElementById('flashcardDefinition');
+    const progressEl = document.getElementById('flashcardProgress');
+
+    if (!termEl || !defEl || !progressEl) return;
+
+    if (!flashcards.length) {
+        termEl.textContent = 'No flashcards found for this chapter yet.';
+        defEl.textContent = 'Try choosing another chapter or reloading the page.';
+        defEl.classList.remove('hidden');
+        progressEl.textContent = 'Card 0 of 0';
+        return;
+    }
+
+    const card = flashcards[flashcardIndex];
+    termEl.textContent = card.term;
+    defEl.textContent = card.definition;
+    defEl.classList.toggle('hidden', !flashcardRevealed);
+    progressEl.textContent = `Card ${flashcardIndex + 1} of ${flashcards.length} (Chapter ${card.chapter})`;
+}
+
+function toggleFlashcard() {
+    flashcardRevealed = !flashcardRevealed;
+    updateFlashcardDisplay();
+}
+
+function nextFlashcard() {
+    if (!flashcards.length) return;
+    flashcardIndex = (flashcardIndex + 1) % flashcards.length;
+    flashcardRevealed = false;
+    updateFlashcardDisplay();
+}
+
+function previousFlashcard() {
+    if (!flashcards.length) return;
+    flashcardIndex = (flashcardIndex - 1 + flashcards.length) % flashcards.length;
+    flashcardRevealed = false;
+    updateFlashcardDisplay();
+}
+
+function markFlashcardKnown() {
+    if (!flashcards.length) return;
+    const card = flashcards[flashcardIndex];
+    const key = `${card.chapter}-${card.term}`;
+    masteredCards.add(key);
+    updateMasteredCount();
+    nextFlashcard();
+}
+
+function shuffleFlashcards(shouldRender = true) {
+    for (let i = flashcards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+    }
+    if (shouldRender) {
+        flashcardIndex = 0;
+        flashcardRevealed = false;
+        updateFlashcardDisplay();
+    }
+}
+
+function resetFlashcards() {
+    const chapterSelect = document.getElementById('flashcardChapter');
+    const chapter = chapterSelect ? chapterSelect.value : 'all';
+    masteredCards = new Set();
+    flashcards = buildFlashcardDeck(chapter);
+    flashcardIndex = 0;
+    flashcardRevealed = false;
+    updateMasteredCount();
+    shuffleFlashcards(false);
+    updateFlashcardDisplay();
 }
 
 // Quiz Functions
@@ -823,7 +1181,7 @@ function updateQuizScore() {
 
 // Navigation
 function startGame(game) {
-    document.getElementById('mainMenu').classList.remove('active');
+    document.querySelectorAll('.game-section').forEach(section => section.classList.remove('active'));
     if (game === 'hangman') {
         document.getElementById('hangmanSection').classList.add('active');
         resetHangman();
@@ -838,6 +1196,9 @@ function startGame(game) {
     } else if (game === 'slides') {
         document.getElementById('slidesSection').classList.add('active');
         showAllSlides();
+    } else if (game === 'flashcards') {
+        document.getElementById('flashcardSection').classList.add('active');
+        resetFlashcards();
     }
 }
 
@@ -845,6 +1206,7 @@ function backToMenu() {
     document.getElementById('hangmanSection').classList.remove('active');
     document.getElementById('quizSection').classList.remove('active');
     document.getElementById('slidesSection').classList.remove('active');
+    document.getElementById('flashcardSection').classList.remove('active');
     document.getElementById('mainMenu').classList.add('active');
     
     // Reset quiz section
@@ -1246,6 +1608,12 @@ window.selectAnswer = selectAnswer;
 window.nextQuestion = nextQuestion;
 window.finishQuiz = finishQuiz;
 window.toggleHint = toggleHint;
+window.resetFlashcards = resetFlashcards;
+window.toggleFlashcard = toggleFlashcard;
+window.nextFlashcard = nextFlashcard;
+window.previousFlashcard = previousFlashcard;
+window.markFlashcardKnown = markFlashcardKnown;
+window.shuffleFlashcards = shuffleFlashcards;
 window.toggleTextToSpeech = toggleTextToSpeech;
 window.speakText = speakText;
 window.showAllSlides = showAllSlides;
